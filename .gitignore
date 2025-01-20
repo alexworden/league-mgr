@@ -1,0 +1,26 @@
+# Node modules
+**/node_modules/
+
+# Build output
+**/build/
+**/target/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Maven
+*.jar
+*.war
+*.ear
+
+# Other files
+*.class
+*.iml
+.DS_Store
