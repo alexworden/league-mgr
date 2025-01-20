@@ -1,45 +1,34 @@
 package com.poolleague.models;
 
-import java.util.UUID;
-
 public class AuthResponse {
+    private boolean authenticated = false;
     private String token;
-    private UUID userId;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String phone;
+    private User user;
+    private String errorMessage;
 
     public AuthResponse(String token, User user) {
         this.token = token;
-        this.userId = user.getId();
-        this.email = user.getEmail();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.phone = user.getPhone();
+        this.user = user;
+        this.authenticated = true;
+    }
+
+    public AuthResponse(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     public String getToken() {
         return token;
     }
 
-    public UUID getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public String getEmail() {
-        return email;
+    public boolean isAuthenticated() {
+        return authenticated;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getPhone() {
-        return phone;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

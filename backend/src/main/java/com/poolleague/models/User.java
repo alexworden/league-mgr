@@ -2,39 +2,32 @@ package com.poolleague.models;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.UUID;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-
-    @Column(nullable = true)
+    private String id;
     private String firstName;
-
-    @Column(nullable = true)
     private String lastName;
-
-    @Column(unique = true, nullable = false)
     private String email;
-
-    @Column
     private String phone;
-
+    
     @JsonIgnore
-    @Column(nullable = false)
     private String passwordHash;
+    
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public User() {
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -78,7 +71,36 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

@@ -30,6 +30,8 @@ function Login() {
       });
 
       const data = await response.json();
+      console.log('Sign-in response:', data);
+      console.log('Sign-in response data:', data);
       
       if (!response.ok) {
         throw new Error(data.message || 'Invalid email or password');
@@ -38,11 +40,10 @@ function Login() {
       // Store token and user info
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify({
-        id: data.userId,
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        phone: data.phone
+        id: data.user.id,
+        email: data.user.email,
+        firstName: data.user.firstName,
+        lastName: data.user.lastName,
       }));
       navigate('/');
       

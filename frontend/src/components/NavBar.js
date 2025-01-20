@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, Avatar } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, Avatar, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
@@ -48,11 +48,16 @@ function NavBar() {
                     (user.firstName[0] + user.lastName[0]).toUpperCase() : 
                     'U'}
                 </Avatar>
-                <Typography variant="body1" sx={{ color: 'white' }}>
-                  {user && user.firstName && user.lastName ? 
-                    `${user.firstName} ${user.lastName}` : 
-                    'User'}
-                </Typography>
+                {user && (
+                  <Link 
+                    component="button" 
+                    variant="h6" 
+                    onClick={() => navigate('/profile')} 
+                    sx={{ cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}
+                  >
+                    {user.firstName} {user.lastName}
+                  </Link>
+                )}
               </Box>
               <Button 
                 color="inherit" 

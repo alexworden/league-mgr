@@ -4,6 +4,10 @@ import { ThemeProvider, CssBaseline, Container } from '@mui/material';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Leagues from './components/Leagues';
+import Profile from './components/Profile';
+import CreateLeague from './components/CreateLeague';
+import EditLeague from './components/EditLeague';
 
 function App() {
   return (
@@ -21,6 +25,10 @@ function App() {
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/leagues" element={<Leagues />} />
+              <Route path="/leagues/create" element={<CreateLeague />} />
+              <Route path="/leagues/edit/:leagueId" element={<EditLeague />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/" element={
                 <div style={{ textAlign: 'center' }}>
                   <h1 style={{ fontSize: '2.5rem', color: '#2c3e50' }}>
