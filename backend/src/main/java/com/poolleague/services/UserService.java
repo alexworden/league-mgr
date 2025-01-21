@@ -64,6 +64,7 @@ public class UserService implements UserDetailsService {
         user.setId(UUID.randomUUID().toString());
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
+        logger.info("Creating user: {}", user);
         return userRepository.save(user);
     }
 
@@ -82,13 +83,11 @@ public class UserService implements UserDetailsService {
     }
 
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email)
-            .orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findByEmail(email).orElse(null);
     }
 
     public User findById(String id) {
-        return userRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findById(id).orElse(null);
     }
 
     @Transactional
@@ -103,7 +102,8 @@ public class UserService implements UserDetailsService {
     @Transactional
     public void deleteUser(String id) {
         if (!userRepository.existsById(id)) {
-            throw new RuntimeException("User not found");
+            logger.info("User with id {} not found for deletion", id);
+            return;
         }
         userRepository.deleteById(id);
     }
